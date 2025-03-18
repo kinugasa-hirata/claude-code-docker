@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+  claude-code:
+    build: .
+    container_name: claude-code
+    volumes:
+      # Mount your project directories
+      - ./projects:/home/claudeuser/projects
+      # Mount configuration to persist login
+      - claude-code-config:/home/claudeuser/.config/claude-code
+    ports:
+      - "3000:3000"
+    environment:
+      - TERM=xterm-256color
+    tty: true
+    stdin_open: true
+
+volumes:
+  claude-code-config:
